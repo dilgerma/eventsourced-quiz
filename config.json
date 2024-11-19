@@ -1,0 +1,3650 @@
+{
+  "slices": [
+    {
+      "id": "3458764607314260848",
+      "title": "slice: enabled quizzes",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764607295813899",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: enabled quizzes",
+          "title": "enabled quizzes",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293353491",
+              "type": "OUTBOUND",
+              "title": "admin",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764607291896575",
+              "type": "INBOUND",
+              "title": "Question Added",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607291896565",
+              "type": "INBOUND",
+              "title": "Quiz Created",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764607293353491",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: enabled quizzes",
+          "title": "admin",
+          "fields": [
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293353665",
+              "type": "OUTBOUND",
+              "title": "Start Quiz",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607295813899",
+              "type": "INBOUND",
+              "title": "enabled quizzes",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607292128369",
+              "type": "INBOUND",
+              "title": "quizzes created",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607410902888",
+          "sliceName": "slice: enabled quizzes",
+          "title": "spec: enabled quizzes",
+          "given": [
+            {
+              "title": "Question Added",
+              "id": "3458764607410902894",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "answer",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "question",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "questionId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": true,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896575"
+            },
+            {
+              "title": "Quiz Created",
+              "id": "3458764607410902891",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896565"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "enabled quizzes",
+              "id": "3458764607410902889",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607295813899"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "3458764607295394135",
+      "title": "slice: quiz questions",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764607294479169",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quiz questions",
+          "title": "quiz questions",
+          "fields": [
+            {
+              "name": "question",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "answer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            },
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293784265",
+              "type": "OUTBOUND",
+              "title": "QA",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764607294814071",
+              "type": "OUTBOUND",
+              "title": "Score Processor",
+              "elementType": "AUTOMATION"
+            },
+            {
+              "id": "3458764607291896575",
+              "type": "INBOUND",
+              "title": "Question Added",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": true,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "projection": "events.forEach((eventData)=>{\n    let event = eventData.data\n    switch(eventData.type) {\n   \n       \tcase 'QuestionAddedEvent':\n\t\t\tthis.resultList.push({\n\t\t\tquestion:event.question,\n\t\t\tanswer:event.answer,\n\t\t\tquestionId:event.questionId,\n\t\t\tquizId:event.quizId\n\t\t})\n    \treturn;\n        \n    }\n})",
+            "placement": "MAIN",
+            "renderFunction": "(data)=>{ return {fields: [\"question\",\"answer\"]}}",
+            "initialValue": null,
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764607293784265",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quiz questions",
+          "title": "QA",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "answer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "question",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "givenAnswer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "totalQuestions",
+              "type": "String",
+              "example": "",
+              "mapping": "question",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "currentQuestion",
+              "type": "String",
+              "example": "",
+              "mapping": "question",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "participantName",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293911112",
+              "type": "OUTBOUND",
+              "title": "Answer Question",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607294479169",
+              "type": "INBOUND",
+              "title": "quiz questions",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607294273365",
+              "type": "INBOUND",
+              "title": "current quiz",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607411688321",
+          "sliceName": "slice: quiz questions",
+          "title": "spec: quiz questions",
+          "given": [
+            {
+              "title": "Question Added",
+              "id": "3458764607411688325",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "answer",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "question",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "questionId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": true,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896575"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "quiz questions",
+              "id": "3458764607411688323",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "question",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "answer",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "questionId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607294479169"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "3458764607294814086",
+      "title": "slice: given answers",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764607294814082",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: given answers",
+          "title": "given answers",
+          "fields": [
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "givenAnswers",
+              "type": "String",
+              "example": "",
+              "mapping": "givenAnswer",
+              "optional": false,
+              "generated": false,
+              "cardinality": "List",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607294814071",
+              "type": "OUTBOUND",
+              "title": "Score Processor",
+              "elementType": "AUTOMATION"
+            },
+            {
+              "id": "3458764607291896581",
+              "type": "INBOUND",
+              "title": "Question answered",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607291896888",
+              "type": "INBOUND",
+              "title": "Quiz ended",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "screens": [],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "Participation"
+      ]
+    },
+    {
+      "id": "3458764607294814080",
+      "title": "slice: Score ",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764607294814075",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Score ",
+          "title": "Score",
+          "fields": [
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "score",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607294813929",
+              "type": "OUTBOUND",
+              "title": "Score calculated",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607294814071",
+              "type": "INBOUND",
+              "title": "Score Processor",
+              "elementType": "AUTOMATION"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764607294813929",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Score ",
+          "title": "Score calculated",
+          "fields": [
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "score",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607294814075",
+              "type": "INBOUND",
+              "title": "Score",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "readmodels": [],
+      "screens": [],
+      "processors": [
+        {
+          "id": "3458764607294814071",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Score ",
+          "title": "Score Processor",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "score",
+              "type": "Int",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "rightAnswers",
+              "type": "String",
+              "example": "",
+              "mapping": "answer",
+              "optional": false,
+              "generated": false,
+              "cardinality": "List",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "givenAnswers",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "List",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "AUTOMATION",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607294814075",
+              "type": "OUTBOUND",
+              "title": "Score",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607294479169",
+              "type": "INBOUND",
+              "title": "quiz questions",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607294814082",
+              "type": "INBOUND",
+              "title": "given answers",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "Participation"
+      ]
+    },
+    {
+      "id": "3458764607294273368",
+      "title": "slice: quizzes joined",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764607294273365",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quizzes joined",
+          "title": "current quiz",
+          "fields": [
+            {
+              "name": "participantName",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293784265",
+              "type": "OUTBOUND",
+              "title": "QA",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764607291896578",
+              "type": "INBOUND",
+              "title": "Quiz joined",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "projection": "events.forEach((eventData)=>{\n    let event = eventData.data\n    switch(eventData.type) {\n   \n       \tcase 'QuizJoinedEvent':\n\t\t\tthis.result.quizId=event.quizId\n\t\t\tthis.result.participantName=event.participantName\n    \treturn;\n        \n    }\n})",
+            "placement": "MAIN",
+            "renderFunction": "",
+            "initialValue": null,
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764607293784265",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quizzes joined",
+          "title": "QA",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "answer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "question",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "givenAnswer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "totalQuestions",
+              "type": "String",
+              "example": "",
+              "mapping": "question",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "currentQuestion",
+              "type": "String",
+              "example": "",
+              "mapping": "question",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "participantName",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293911112",
+              "type": "OUTBOUND",
+              "title": "Answer Question",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607294479169",
+              "type": "INBOUND",
+              "title": "quiz questions",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607294273365",
+              "type": "INBOUND",
+              "title": "current quiz",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607411688175",
+          "sliceName": "slice: quizzes joined",
+          "title": "spec: quizzes joined",
+          "given": [
+            {
+              "title": "Quiz joined",
+              "id": "3458764607411688184",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "cardinality": "Single",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "excludeFromApi": false,
+                  "idAttribute": true,
+                  "generated": false
+                },
+                {
+                  "name": "participantName",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "excludeFromApi": false,
+                  "generated": false,
+                  "idAttribute": false,
+                  "type": "UUID",
+                  "cardinality": "Single"
+                }
+              ],
+              "linkedId": "3458764607291896578"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "current quiz",
+              "id": "3458764607411688180",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "participantName",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607294273365"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "Participation"
+      ]
+    },
+    {
+      "id": "3458764607293911115",
+      "title": "slice: Answer Question",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764607293911112",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Answer Question",
+          "title": "Answer Question",
+          "fields": [
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "givenAnswer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607291896581",
+              "type": "OUTBOUND",
+              "title": "Question answered",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607291896888",
+              "type": "OUTBOUND",
+              "title": "Quiz ended",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607293784265",
+              "type": "INBOUND",
+              "title": "QA",
+              "elementType": "SCREEN"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764607291896888",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Answer Question",
+          "title": "Quiz ended",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607294814082",
+              "type": "OUTBOUND",
+              "title": "given answers",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607293911112",
+              "type": "INBOUND",
+              "title": "Answer Question",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        },
+        {
+          "id": "3458764607291896581",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Answer Question",
+          "title": "Question answered",
+          "fields": [
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "givenAnswer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607294814082",
+              "type": "OUTBOUND",
+              "title": "given answers",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607293911112",
+              "type": "INBOUND",
+              "title": "Answer Question",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": false,
+          "service": "",
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "readmodels": [],
+      "screens": [
+        {
+          "id": "3458764607293784265",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Answer Question",
+          "title": "QA",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "answer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "question",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "givenAnswer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "totalQuestions",
+              "type": "String",
+              "example": "",
+              "mapping": "question",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "currentQuestion",
+              "type": "String",
+              "example": "",
+              "mapping": "question",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "name",
+              "type": "String",
+              "example": "",
+              "mapping": "participantName",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293911112",
+              "type": "OUTBOUND",
+              "title": "Answer Question",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607294479169",
+              "type": "INBOUND",
+              "title": "quiz questions",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607294273365",
+              "type": "INBOUND",
+              "title": "current quiz",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [],
+      "actors": [],
+      "aggregates": [
+        "Participation"
+      ]
+    },
+    {
+      "id": "3458764607293637221",
+      "title": "slice: Join Quiz",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764607293637214",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Join Quiz",
+          "title": "Join Quiz",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "cardinality": "Single",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "excludeFromApi": false,
+              "idAttribute": true,
+              "generated": true
+            },
+            {
+              "name": "participantName",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607291896578",
+              "type": "OUTBOUND",
+              "title": "Quiz joined",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607293502035",
+              "type": "INBOUND",
+              "title": "Join",
+              "elementType": "SCREEN"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": true,
+          "prototype": {
+            "projection": "result.enabled = false\nevents.forEach((eventData)=>{\n    let event = eventData.data\n   switch(eventData.type) {\n   \n      case 'QuizStartedEvent':\n      result.enabled=true\n    \treturn;\n        \n    }}\n  )\n    ",
+            "placement": "MAIN",
+            "initialValue": "false",
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764607291896578",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Join Quiz",
+          "title": "Quiz joined",
+          "fields": [
+            {
+              "name": "aggregateId",
+              "type": "UUID",
+              "cardinality": "Single",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "excludeFromApi": false,
+              "idAttribute": true,
+              "generated": false
+            },
+            {
+              "name": "participantName",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "excludeFromApi": false,
+              "generated": false,
+              "idAttribute": false,
+              "type": "UUID",
+              "cardinality": "Single"
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607294273365",
+              "type": "OUTBOUND",
+              "title": "current quiz",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607293637214",
+              "type": "INBOUND",
+              "title": "Join Quiz",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": false,
+          "service": "",
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "readmodels": [],
+      "screens": [
+        {
+          "id": "3458764607293502035",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Join Quiz",
+          "title": "Join",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "startTime",
+              "type": "DateTime",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "participantName",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "Participation",
+          "aggregateDependencies": [
+            "Participation"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293637214",
+              "type": "OUTBOUND",
+              "title": "Join Quiz",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607293502024",
+              "type": "INBOUND",
+              "title": "started quizzes",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607411286148",
+          "sliceName": "slice: Join Quiz",
+          "title": "spec: Join Quiz Aggregate Test",
+          "given": [
+            {
+              "title": "Quiz Started",
+              "id": "3458764607411286158",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "startTime",
+                  "type": "DateTime",
+                  "example": ""
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764607291896571"
+            }
+          ],
+          "when": [
+            {
+              "title": "Join Quiz",
+              "id": "3458764607411286150",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "participantName",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764607293637214"
+            }
+          ],
+          "then": [
+            {
+              "title": "Quiz joined",
+              "id": "3458764607411286154",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "aggregateId",
+                  "type": "UUID",
+                  "example": ""
+                },
+                {
+                  "name": "participantName",
+                  "type": "String",
+                  "example": ""
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": ""
+                }
+              ],
+              "linkedId": "3458764607291896578"
+            }
+          ],
+          "comments": [
+            {
+              "description": ""
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "Participation"
+      ]
+    },
+    {
+      "id": "3458764607293502027",
+      "title": "slice: quizzes started",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764607293502024",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quizzes started",
+          "title": "started quizzes",
+          "fields": [
+            {
+              "name": "startTime",
+              "type": "DateTime",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293502035",
+              "type": "OUTBOUND",
+              "title": "Join",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764607291896571",
+              "type": "INBOUND",
+              "title": "Quiz Started",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": true,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "projection": "events.forEach((eventData)=>{\n    let event = eventData.data\n    switch(eventData.type) {\n   \n       \tcase 'QuizStartedEvent':\n\t\t\tthis.resultList.push({\n\t\t\tquizId:event.quizId,\n\t\t\tstartTime:event.startTime\n\t\t})\n    \treturn;\n        \n    }\n})",
+            "placement": "MAIN",
+            "renderFunction": "",
+            "initialValue": null,
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764607293502035",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quizzes started",
+          "title": "Join",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "startTime",
+              "type": "DateTime",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "participantName",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293637214",
+              "type": "OUTBOUND",
+              "title": "Join Quiz",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607293502024",
+              "type": "INBOUND",
+              "title": "started quizzes",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607411139891",
+          "sliceName": "slice: quizzes started",
+          "title": "spec: quizzes started",
+          "given": [
+            {
+              "title": "Quiz Started",
+              "id": "3458764607411139895",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "startTime",
+                  "type": "DateTime",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896571"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "started quizzes",
+              "id": "3458764607411139894",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "startTime",
+                  "type": "DateTime",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607293502024"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "3458764607293353668",
+      "title": "slice: Start Quiz",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764607293353665",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Start Quiz",
+          "title": "Start Quiz",
+          "fields": [
+            {
+              "name": "startTime",
+              "type": "DateTime",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607291896571",
+              "type": "OUTBOUND",
+              "title": "Quiz Started",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607293353491",
+              "type": "INBOUND",
+              "title": "admin",
+              "elementType": "SCREEN"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": true,
+          "prototype": {
+            "projection": "result.enabled =false\nevents.forEach((eventData)=>{\n    let event = eventData.data\n   switch(eventData.type) {\n   \n      case 'QuizCreatedEvent':\n        result.enabled=false\n    \treturn;\n        \n      case 'QuizCreatedEvent':\n        // result.enabled=true\n    \treturn;\n        \n      case 'QuestionAddedEvent':\n        result.enabled=true\n    \treturn;\n        \n    }}\n  )\n    ",
+            "label": "Start",
+            "placement": "MAIN",
+            "initialValue": "false",
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764607291896571",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Start Quiz",
+          "title": "Quiz Started",
+          "fields": [
+            {
+              "name": "startTime",
+              "type": "DateTime",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293502024",
+              "type": "OUTBOUND",
+              "title": "started quizzes",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607293353665",
+              "type": "INBOUND",
+              "title": "Start Quiz",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": false,
+          "service": "",
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "readmodels": [],
+      "screens": [
+        {
+          "id": "3458764607293353491",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Start Quiz",
+          "title": "admin",
+          "fields": [
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293353665",
+              "type": "OUTBOUND",
+              "title": "Start Quiz",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607295813899",
+              "type": "INBOUND",
+              "title": "enabled quizzes",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607292128369",
+              "type": "INBOUND",
+              "title": "quizzes created",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607411139714",
+          "sliceName": "slice: Start Quiz",
+          "title": "spec: Start Quiz Aggregate Test",
+          "given": [
+            {
+              "title": "Question Added",
+              "id": "3458764607411139731",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "answer",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "question",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "questionId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": true,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896575"
+            },
+            {
+              "title": "Quiz Created",
+              "id": "3458764607411139728",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896565"
+            },
+            {
+              "title": "Quiz Created",
+              "id": "3458764607411139723",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896565"
+            }
+          ],
+          "when": [
+            {
+              "title": "Start Quiz",
+              "id": "3458764607411139715",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "startTime",
+                  "type": "DateTime",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": true,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607293353665"
+            }
+          ],
+          "then": [
+            {
+              "title": "Quiz Started",
+              "id": "3458764607411139720",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "startTime",
+                  "type": "DateTime",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896571"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "3458764607293141560",
+      "title": "slice: Add Question",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764607293141558",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Add Question",
+          "title": "Add Question",
+          "fields": [
+            {
+              "name": "answer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "question",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607291896575",
+              "type": "OUTBOUND",
+              "title": "Question Added",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607292268453",
+              "type": "INBOUND",
+              "title": "admin",
+              "elementType": "SCREEN"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "projection": "events.forEach((eventData)=>{\n    let event = eventData.data\n   switch(eventData.type) {\n   \n      case 'QuizCreatedEvent':\n        result.enabled=true\n    \treturn;\n        \n    }}\n  )\n    ",
+            "placement": "MAIN",
+            "initialValue": "false",
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764607291896575",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Add Question",
+          "title": "Question Added",
+          "fields": [
+            {
+              "name": "answer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "question",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "questionId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607295813899",
+              "type": "OUTBOUND",
+              "title": "enabled quizzes",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607294479169",
+              "type": "OUTBOUND",
+              "title": "quiz questions",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607293141558",
+              "type": "INBOUND",
+              "title": "Add Question",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": false,
+          "service": "",
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "readmodels": [],
+      "screens": [
+        {
+          "id": "3458764607292268453",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Add Question",
+          "title": "admin",
+          "fields": [
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "question",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "answer",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": true,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293141558",
+              "type": "OUTBOUND",
+              "title": "Add Question",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607292128369",
+              "type": "INBOUND",
+              "title": "quizzes created",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607410902598",
+          "sliceName": "slice: Add Question",
+          "title": "spec:  Add Question without having quiz started",
+          "given": [],
+          "when": [
+            {
+              "title": "Add Question",
+              "id": "3458764607410902599",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "answer",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "question",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "questionId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": true,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607293141558"
+            }
+          ],
+          "then": [
+            {
+              "title": "Error-Case",
+              "id": "3458764607410902602",
+              "index": 0,
+              "type": "SPEC_ERROR"
+            }
+          ],
+          "comments": []
+        },
+        {
+          "id": "3458764607410758815",
+          "sliceName": "slice: Add Question",
+          "title": "spec: Add Question Aggregate Test",
+          "given": [
+            {
+              "title": "Quiz Created",
+              "id": "3458764607410758823",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896565"
+            }
+          ],
+          "when": [
+            {
+              "title": "Add Question",
+              "id": "3458764607410758818",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "answer",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "question",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "questionId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": true,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607293141558"
+            }
+          ],
+          "then": [
+            {
+              "title": "Question Added",
+              "id": "3458764607410758820",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "answer",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "question",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "questionId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": true,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896575"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "3458764607292128371",
+      "title": "slice: quizzes created",
+      "context": "",
+      "commands": [],
+      "events": [],
+      "readmodels": [
+        {
+          "id": "3458764607292128369",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quizzes created",
+          "title": "quizzes created",
+          "fields": [
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "READMODEL",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293353491",
+              "type": "OUTBOUND",
+              "title": "admin",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764607292268453",
+              "type": "OUTBOUND",
+              "title": "admin",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764607292128381",
+              "type": "OUTBOUND",
+              "title": "admin",
+              "elementType": "SCREEN"
+            },
+            {
+              "id": "3458764607291896565",
+              "type": "INBOUND",
+              "title": "Quiz Created",
+              "elementType": "EVENT"
+            }
+          ],
+          "listElement": true,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "projection": "events.forEach((eventData)=>{\n    let event = eventData.data\n    switch(eventData.type) {\n   \n       \tcase 'QuizCreatedEvent':\n\t\t\tthis.resultList.push({\n\t\t\tquizTitle:event.quizTitle,\n\t\t\tquizId:event.quizId\n\t\t})\n    \treturn;\n        \n    }\n})",
+            "label": "Quizzes",
+            "placement": "MAIN",
+            "renderFunction": "(data)=>{ return { key: \"quizTitle\"}}",
+            "initialValue": null,
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "screens": [
+        {
+          "id": "3458764607293353491",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: quizzes created",
+          "title": "admin",
+          "fields": [
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607293353665",
+              "type": "OUTBOUND",
+              "title": "Start Quiz",
+              "elementType": "COMMAND"
+            },
+            {
+              "id": "3458764607295813899",
+              "type": "INBOUND",
+              "title": "enabled quizzes",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607292128369",
+              "type": "INBOUND",
+              "title": "quizzes created",
+              "elementType": "READMODEL"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607410758657",
+          "sliceName": "slice: quizzes created",
+          "title": "spec: quizzes created",
+          "given": [
+            {
+              "title": "Quiz Created",
+              "id": "3458764607410758662",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896565"
+            }
+          ],
+          "when": [],
+          "then": [
+            {
+              "title": "quizzes created",
+              "id": "3458764607410758658",
+              "index": 0,
+              "type": "SPEC_READMODEL",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607292128369"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "quiz"
+      ]
+    },
+    {
+      "id": "3458764607292007252",
+      "title": "slice: Create Quiz",
+      "context": "",
+      "commands": [
+        {
+          "id": "3458764607292007251",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Create Quiz",
+          "title": "Create Quiz",
+          "fields": [
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "COMMAND",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607291896565",
+              "type": "OUTBOUND",
+              "title": "Quiz Created",
+              "elementType": "EVENT"
+            },
+            {
+              "id": "3458764607292007254",
+              "type": "INBOUND",
+              "title": "admin",
+              "elementType": "SCREEN"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": true,
+          "prototype": {
+            "projection": "events.forEach((eventData)=>{\n    let event = eventData.data\n   switch(eventData.type) {\n   \n    }}\n  )\n    ",
+            "label": "Create",
+            "placement": "MAIN",
+            "initialValue": "true",
+            "css": null,
+            "pageTemplate": null,
+            "order": -1,
+            "activeByDefault": false
+          }
+        }
+      ],
+      "events": [
+        {
+          "id": "3458764607291896565",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Create Quiz",
+          "title": "Quiz Created",
+          "fields": [
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": true,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "EVENT",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607295813899",
+              "type": "OUTBOUND",
+              "title": "enabled quizzes",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607292128369",
+              "type": "OUTBOUND",
+              "title": "quizzes created",
+              "elementType": "READMODEL"
+            },
+            {
+              "id": "3458764607292007251",
+              "type": "INBOUND",
+              "title": "Create Quiz",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": false,
+          "service": "",
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "readmodels": [],
+      "screens": [
+        {
+          "id": "3458764607292007254",
+          "domain": "",
+          "modelContext": "Quiz",
+          "context": "INTERNAL",
+          "slice": "slice: Create Quiz",
+          "title": "admin",
+          "fields": [
+            {
+              "name": "quizTitle",
+              "type": "String",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            },
+            {
+              "name": "quizId",
+              "type": "UUID",
+              "example": "",
+              "mapping": "",
+              "optional": false,
+              "generated": false,
+              "cardinality": "Single",
+              "idAttribute": false,
+              "excludeFromApi": false
+            }
+          ],
+          "type": "SCREEN",
+          "description": "",
+          "aggregate": "quiz",
+          "aggregateDependencies": [
+            "quiz"
+          ],
+          "dependencies": [
+            {
+              "id": "3458764607292007251",
+              "type": "OUTBOUND",
+              "title": "Create Quiz",
+              "elementType": "COMMAND"
+            }
+          ],
+          "listElement": false,
+          "apiEndpoint": "",
+          "service": null,
+          "createsAggregate": false,
+          "prototype": {
+            "activeByDefault": false
+          }
+        }
+      ],
+      "processors": [],
+      "specifications": [
+        {
+          "id": "3458764607410758568",
+          "sliceName": "slice: Create Quiz",
+          "title": "spec: Create Quiz Aggregate Test",
+          "given": [],
+          "when": [
+            {
+              "title": "Create Quiz",
+              "id": "3458764607410758572",
+              "index": 0,
+              "type": "SPEC_COMMAND",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607292007251"
+            }
+          ],
+          "then": [
+            {
+              "title": "Quiz Created",
+              "id": "3458764607410758574",
+              "index": 0,
+              "type": "SPEC_EVENT",
+              "fields": [
+                {
+                  "name": "quizTitle",
+                  "type": "String",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": false,
+                  "excludeFromApi": false
+                },
+                {
+                  "name": "quizId",
+                  "type": "UUID",
+                  "example": "",
+                  "mapping": "",
+                  "optional": false,
+                  "generated": false,
+                  "cardinality": "Single",
+                  "idAttribute": true,
+                  "excludeFromApi": false
+                }
+              ],
+              "linkedId": "3458764607291896565"
+            }
+          ],
+          "comments": [
+            {
+              "description": "            comment"
+            }
+          ]
+        }
+      ],
+      "actors": [],
+      "aggregates": [
+        "quiz"
+      ]
+    }
+  ],
+  "flows": [],
+  "aggregates": [
+    {
+      "id": "3458764607293502847",
+      "title": "quiz",
+      "fields": [
+        {
+          "name": "quizId",
+          "type": "UUID",
+          "example": "",
+          "mapping": "",
+          "optional": false,
+          "generated": false,
+          "cardinality": "Single",
+          "idAttribute": true,
+          "excludeFromApi": false
+        }
+      ],
+      "service": null,
+      "type": "AGGREGATE"
+    },
+    {
+      "id": "3458764607294973477",
+      "title": "Participation",
+      "fields": [
+        {
+          "name": "aggregateId",
+          "type": "UUID",
+          "cardinality": "Single",
+          "example": "",
+          "mapping": "",
+          "optional": false,
+          "excludeFromApi": false,
+          "idAttribute": true,
+          "generated": false
+        }
+      ],
+      "service": null,
+      "type": "AGGREGATE"
+    }
+  ],
+  "actors": [],
+  "context": "Quiz",
+  "codeGen": {
+    "application": "Quiz",
+    "domain": "",
+    "rootPackage": "de.nebulit.quiz"
+  },
+  "boardId": "uXjVLDkT_FA="
+}
