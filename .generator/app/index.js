@@ -7,7 +7,6 @@ module.exports = class extends Generator {
 
     constructor(args, opts) {
         super(args, opts);
-        this.givenAnswers = opts.answers
         /**
          * Load the exported config json from the
          * current Working Directory
@@ -15,29 +14,44 @@ module.exports = class extends Generator {
         config = require(this.env.cwd + "/config.json");
     }
 
-    async prompting() {
 
-        /**
-         * configure prompts.
-         */
-        this.answers = await this.prompt([
+    generateCommandHandlers() {
+        let commands = config.slices.flatMap(slice => slice.commands)
+
+        let commandImports = commands.map(command => {
+            let commandTitle = slugify(command.title, "")
+            return `import {${commandTitle}} from "@/app/api/commands/${commandTitle}";`
+        }).join("\n")
+
+        let commandHandlers = commands.map(command => {
+            let commandTitle = slugify(command.title, "")
+            return `
+let handle${commandTitle} = (command: ${commandTitle}): Event[] => {
+    return []
+}
+`
+        }).join("\n")
+
+        this.fs.copyTpl(
+            this.templatePath(`src/components/QuizApi.ts.tpl`),
+            this.destinationPath(`./app/api/QuizApi.ts`),
             {
-                type: 'checkbox',
-                name: 'events',
-                message: 'which events should be generated?',
-                choices: config.slices.flatMap(item => item.events).map(item => item.title),
-                //when: (answers) => answers.elementType === "events"
-            }]);
-    }
+                //vars
+                commandImports: commandImports,
+                createQuizCommandHandler: commandHandlers
+            }
+        )
 
+    }
 
     /**
      * this runs automatically, since it does not start with "_"
      */
     createElements() {
 
-        this.answers.events?.forEach((eventTitle) => {
-            var event = config.slices.flatMap(it => it.events).find(it => it.title === eventTitle)
+        // render events
+        let events = config.slices.flatMap(slice => slice.events)
+        events.forEach((event) => {
             if (event) {
 
                 let eventName = slugify(event.title, "")
@@ -51,7 +65,25 @@ module.exports = class extends Generator {
                     }
                 )
             }
-        })
+        });
+
+
+        // render commands
+        config.slices.flatMap(slice => slice.commands).forEach((command) => {
+            if (command) {
+
+                let commandName = slugify(command.title, "")
+                this.fs.copyTpl(
+                    this.templatePath(`src/components/Command.ts.tpl`),
+                    this.destinationPath(`./app/api/commands/${commandName}.ts`),
+                    {
+                        //vars
+                        _name: commandName,
+                        _fields: renderFields(command)
+                    }
+                )
+            }
+        });
     }
 }
 

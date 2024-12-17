@@ -1,0 +1,2 @@
+<%- commandImports %>
+<%- createQuizCommandHandler %>
