@@ -18,18 +18,48 @@ module.exports = class extends Generator {
     generateCommandHandlers() {
         let commands = config.slices.flatMap(slice => slice.commands)
 
+        /**
+         * go over all commands and dynamically build imports.
+         */
         let commandImports = commands.map(command => {
             let commandTitle = slugify(command.title, "")
             return `import {${commandTitle}} from "@/app/api/commands/${commandTitle}";`
         }).join("\n")
 
+        /**
+         * render command handlers
+         */
         let commandHandlers = commands.map(command => {
             let commandTitle = slugify(command.title, "")
+
+            /**
+             * for each command, find the outbound dependencies
+             */
+            let inboundEvents = command.dependencies.filter(dep =>
+                dep.type === 'OUTBOUND' && dep.elementType === 'EVENT')
+                .map(eventDep => config.slices.flatMap(
+                    slice => slice.events)
+                    .find(event => event.id === eventDep.id))
+
+            /**
+             * build the result array for each command
+             */
+            let resultEventArray = inboundEvents.map(event => {
+                let eventTitle = slugify(event.title, "")
+                return `{
+                    type:'${eventTitle}',
+                    data: {
+                        ${event.fields.map(field => {
+                            return `${field.name}: command.${field.name}`
+                        }).join(",\n")}
+                    }
+                }`
+            }).join(",\n")
+
             return `
-let handle${commandTitle} = (command: ${commandTitle}): Event[] => {
-    return []
-}
-`
+            let handle${commandTitle} = (command: ${commandTitle}): QuizEvents[] => {
+                return [${resultEventArray}]
+            }`
         }).join("\n")
 
         this.fs.copyTpl(
@@ -43,6 +73,32 @@ let handle${commandTitle} = (command: ${commandTitle}): Event[] => {
         )
 
     }
+
+    renderUnionTypes(){
+        let events = config.slices.flatMap(slice => slice.events)
+
+        let eventImports = events.map(event => {
+            let eventTitle = slugify(event.title, "")
+            return `import {${eventTitle}} from "@/app/api/events/${eventTitle}";`
+        }).join("\n")
+
+        // render Event Union Type
+        var eventUnionTypes = config.slices.flatMap(slice => slice.events).map((event) => {
+            return slugify(event.title, "")
+        }).join(" | \n");
+
+
+        this.fs.copyTpl(
+            this.templatePath(`src/components/EventUnion.ts.tpl`),
+            this.destinationPath(`./app/api/events/QuizEvents.ts`),
+            {
+                //vars
+                _eventImports: eventImports,
+                _eventUnionTypes: eventUnionTypes
+            }
+        )
+    }
+
 
     /**
      * this runs automatically, since it does not start with "_"
