@@ -1,8 +1,11 @@
 import {useEffect, useState} from 'react';
 import {v4} from "uuid";
-import {QuizApi} from "@/app/api/QuizApi";
+import {handleCreateQuiz} from "@/app/api/QuizApi";
 import {findEventStore, registerEventListener} from "@/infrastructure/inmemoryEventstore";
 import {Event} from "@event-driven-io/emmett";
+import {createMutableActionQueue} from "next/dist/shared/lib/router/action-queue";
+import {handleClientScriptLoad} from "next/script";
+import {QuizEvents} from "@/app/api/events/QuizEvents";
 
 export function AdminQuizConfig() {
     const [questions, setQuestions] = useState<any[]>([]);
@@ -27,13 +30,13 @@ export function AdminQuizConfig() {
 
     useEffect(() => {
         registerEventListener({
-            on(streamName: string, events: Event[]) {
-                findEventStore().readStream(streamName).then(event => {
-                    event?.events.forEach((event) => {
-                        switch (event.type) {
-                            // build projection
-                        }
-                    })
+            on(streamName: string, events: QuizEvents[]) {
+                events.forEach((event) => {
+                    let quizEvent = event as QuizEvents
+                    switch (quizEvent.type) {
+                        case 'QuizCreated':
+                            quizzes.push(quizEvent.data.quizTitle)
+                    }
                 })
             }
         })
@@ -61,7 +64,14 @@ export function AdminQuizConfig() {
                         <div className="control">
                             <button className="button is-primary" onClick={() => {
                                 // send command
-                                //QuizApi.handle(createQuizCommand)
+                                let events = handleCreateQuiz({
+                                    type: 'CreateQuiz',
+                                    data: {
+                                        quizId: v4(),
+                                        quizTitle: newQuiz
+                                    }
+                                })
+                                findEventStore().appendToStream('Quiz', events)
                             }}>
                                 Create Quiz
                             </button>
